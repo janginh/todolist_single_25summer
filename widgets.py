@@ -1,6 +1,8 @@
 from PyQt5.QtWidgets import QCalendarWidget, QDateEdit, QPushButton
 from PyQt5.QtWidgets import QGraphicsOpacityEffect
+from PyQt5.QtWidgets import QDateEdit
 from PyQt5.QtCore import QDate
+from PyQt5.QtWidgets import QDateTimeEdit
 
 class SliderWindowOpacityController:
     """슬라이더로 메인 윈도우 전체의 투명도 조절"""
@@ -63,17 +65,23 @@ class CalendarDateSyncController:
 
 
 class DateEditController:
-    def __init__(self, date_edit_widget: QDateEdit):
-        self.date_edit = date_edit_widget
+    def __init__(self, date_edit: QDateEdit):
+        self.date_edit = date_edit
+        self.init_format()
+
+    def init_format(self):
+        self.date_edit.setDisplayFormat("yyyy-MM-dd")  # 표시 형식 고정
+        self.date_edit.setDate(QDate.currentDate())
+        self.date_edit.setCurrentSection(QDateTimeEdit.DaySection)  # ▲ 누르면 "일"이 올라감
 
     def get_date(self) -> QDate:
         return self.date_edit.date()
 
     def set_date(self, date: QDate):
         self.date_edit.setDate(date)
-    
-    def set_today(self):   #오늘 날짜로 설정
-        self.date_edit.setDate(QDate.currentDate())
+
+    def set_today(self):
+        self.set_date(QDate.currentDate())
 
 
 class ButtonController:
