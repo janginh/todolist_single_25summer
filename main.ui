@@ -91,6 +91,9 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="toolTip">
+     <string>해당 날짜로 이동</string>
+    </property>
     <property name="text">
      <string>이동</string>
     </property>
